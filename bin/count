@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'xmindConverter'
+
+xmindDirPath = ARGV[0]
+throw 'missing xmind dir path' if xmindDirPath.nil?
+
+include TIM
+result = count(xmindDirPath)
+
+spaceCount = 10
+sum = 0;
+result.each do |key, value|
+    sum += value
+    print "#{value}#{' '* (spaceCount - value.to_s.length)}#{key}\n"
+end
+
+print "the total count of cases: #{sum}"

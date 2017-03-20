@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'xmindConverter'
+
+xmindFilePath = ARGV[0]
+throw 'missing xmind file path' if xmindFilePath.nil?
+
+include TIM
+import(xmindFilePath)
