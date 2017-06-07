@@ -1,30 +1,28 @@
 require 'writeexcel'
 
 module TapdExcel
-    def toExcel groups, prefixDir
+    def toExcel groups, targetExcelPath
         # print data
-        workbook = WriteExcel.new('text.xls')
-
-        print groups[0].length
+        workbook = WriteExcel.new(targetExcelPath)
 
         worksheet = workbook.add_worksheet
 
+        # write titles
         worksheet.write(0, 0, '用例目录')
         worksheet.write(0, 1, '用例名称')
-        worksheet.write(0, 2, '需求ID')
-        worksheet.write(0, 3, '前置条件')
-        worksheet.write(0, 4, '用例步骤')
-        worksheet.write(0, 5, '预期结果')
-        worksheet.write(0, 6, '用例类型')
-        worksheet.write(0, 7, '用例状态')
-        worksheet.write(0, 8, '用例等级')
-        worksheet.write(0, 9, '创建人')
 
-        item = groups[0][0]
+        sheetOne = groups[0]
+        line = 1
+        sheetOne.each_with_index do |item|
+            path = item.slice(0, 2).inject('') {|prev, cur| prev == ''? cur['title']: prev + ' -> ' + cur['title']}
+            title = item.slice(2, item.length).inject('') {|prev, cur| prev == ''? cur['title']: prev + ' -> ' + cur['title']}
 
-        worksheet.write(1, 0, "#{prefixDir}-testdir")
-        worksheet.write(1, 1, item[1]['title'])
-        worksheet.write(1, 7, '正常')
+            if path != '' && title != ''
+                line = line + 1
+                worksheet.write(line, 0, path)
+                worksheet.write(line, 1, title)
+            end 
+        end
 
         workbook.close
     end

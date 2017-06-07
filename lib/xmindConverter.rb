@@ -19,13 +19,13 @@ module TIM
         path
     end
 
-    def import(xmindFilePath)
+    def import(xmindFilePath, targetExcelPath)
         TapdExcel.toExcel(
             XMindTransfer.transfer(
                 XMindParser.load formatFilePath(xmindFilePath, Dir.pwd), formatFilePath("tmp/#{SecureRandom.uuid}", File.dirname(__FILE__))
             ),
 
-            'test_for_auto_import'
+            targetExcelPath
         )
     end
 

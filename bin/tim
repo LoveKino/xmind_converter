@@ -3,7 +3,10 @@
 require 'xmindConverter'
 
 xmindFilePath = ARGV[0]
+targetExcelPath = ARGV[1] 
+
 throw 'missing xmind file path' if xmindFilePath.nil?
+throw 'missing target excel file path' if targetExcelPath.nil?
 
 include TIM
-import(xmindFilePath)
+import(xmindFilePath, targetExcelPath)
