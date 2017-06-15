@@ -6,6 +6,14 @@ https://github.com/xmindltd/xmind/wiki/XMindFileFormat
 
 ruby -Ilib ./bin/count ${xmindFileDir}
 
+## dependecies
+
+gem install rake
+
+gem install rubyzip
+
+gem install rubyzip
+
 ## tim
 
 ruby -Ilib ./bin/tim ${xmindFile} ${targetExcelFile}
