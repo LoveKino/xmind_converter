@@ -6,6 +6,8 @@ https://github.com/xmindltd/xmind/wiki/XMindFileFormat
 
 gem install rake
 
+gem install zip
+
 gem install rubyzip
 
 gem install writeexcel
